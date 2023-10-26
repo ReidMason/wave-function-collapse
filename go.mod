@@ -1,4 +1,4 @@
-module htmx-testing
+module github.com/ReidMason/wave-function-collapse
 
 go 1.21.1
 
