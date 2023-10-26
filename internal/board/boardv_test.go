@@ -1,4 +1,4 @@
-package boardv2
+package board
 
 import (
 	"math/rand"

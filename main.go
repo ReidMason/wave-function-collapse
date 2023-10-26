@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	"htmx-testing/internal/boardv2"
+	"htmx-testing/internal/board"
 	"log"
 	"math/rand"
 	"net/http"
@@ -57,12 +57,12 @@ func setInterval(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendStuff() {
-	var boardData *boardv2.Board
+	var boardData *board.Board
 	for {
 		if ws != nil {
 			if boardData == nil {
 				r := rand.New(rand.NewSource(time.Now().UnixNano()))
-				boardData = boardv2.New(100, r)
+				boardData = board.New(100, r)
 				// go doWork(boardData)
 				for boardData.Iter() {
 				}
@@ -74,7 +74,7 @@ func sendStuff() {
 			templ := template.Must(template.ParseFiles("templates/time.html"))
 			w := bytes.NewBuffer(make([]byte, 0))
 
-			err := templ.Execute(w, struct{ Data [][]boardv2.TileDisplay }{Data: data})
+			err := templ.Execute(w, struct{ Data [][]board.TileDisplay }{Data: data})
 			if err != nil {
 				log.Println(err)
 			}
@@ -85,7 +85,7 @@ func sendStuff() {
 	}
 }
 
-func doWork(boardData *boardv2.Board) {
+func doWork(boardData *board.Board) {
 	for boardData.Iter() {
 		time.Sleep(time.Millisecond * 10)
 	}
