@@ -139,8 +139,8 @@ func GetAllTiles() []Tile {
 	grassForestCorner := Tile{
 		Sockets: [4]socket.Socket{
 			socket.GrassForestCornerN,
-			socket.GrassT,
-			socket.GrassT,
+			socket.ForestT,
+			socket.ForestT,
 			socket.GrassForestCornerW,
 		},
 		Style: "bg-gradient-to-tl from-green-400 from-50% to-green-200",
