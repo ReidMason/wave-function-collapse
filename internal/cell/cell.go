@@ -1,9 +1,10 @@
 package cell
 
 import (
-	"htmx-testing/internal/socket"
-	"htmx-testing/internal/tile"
 	"math/rand"
+
+	"github.com/ReidMason/wave-function-collapse/internal/socket"
+	"github.com/ReidMason/wave-function-collapse/internal/tile"
 )
 
 type Cell struct {

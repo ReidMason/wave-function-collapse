@@ -1,8 +1,9 @@
 package tile
 
 import (
-	"htmx-testing/internal/socket"
 	"strings"
+
+	"github.com/ReidMason/wave-function-collapse/internal/socket"
 )
 
 type Tile struct {

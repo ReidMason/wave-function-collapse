@@ -1,9 +1,10 @@
 package board
 
 import (
-	"htmx-testing/internal/cell"
-	"htmx-testing/internal/tile"
 	"math/rand"
+
+	"github.com/ReidMason/wave-function-collapse/internal/cell"
+	"github.com/ReidMason/wave-function-collapse/internal/tile"
 )
 
 type Board struct {

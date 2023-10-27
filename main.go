@@ -2,13 +2,14 @@ package main
 
 import (
 	"bytes"
-	"htmx-testing/internal/board"
 	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
 	"text/template"
 	"time"
+
+	"github.com/ReidMason/wave-function-collapse/internal/board"
 
 	"github.com/gorilla/websocket"
 )
