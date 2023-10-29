@@ -88,12 +88,12 @@ func (b *Board) Iter() bool {
 	}
 
 	if len(lowestCells) == 0 {
-		return false
+		return true
 	}
 
 	idx := b.r.Intn(len(lowestCells))
 	randomTile := lowestCells[idx]
 	randomTile.Collapse()
 
-	return true
+	return false
 }
