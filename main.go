@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/json"
+	"bytes"
 	"log"
 	"math/rand"
 	"net/http"
@@ -64,27 +64,30 @@ func sendStuff() {
 			if boardData == nil {
 				r := rand.New(rand.NewSource(time.Now().UnixNano()))
 				boardData = board.New(100, r)
+				// go doWork(boardData)
+				for boardData.Iter() {
+				}
 			}
 
 			data := boardData.Display()
-			if boardData.Iter() {
-				boardData = nil
-				continue
-			}
+			boardData.Iter()
 
-			payload, err := json.Marshal(data)
+			templ := template.Must(template.ParseFiles("templates/time.html"))
+			w := bytes.NewBuffer(make([]byte, 0))
+
+			err := templ.Execute(w, struct{ Data [][]board.TileDisplay }{Data: data})
 			if err != nil {
-				continue
+				log.Println(err)
 			}
 
-			ws.WriteMessage(1, payload)
+			ws.WriteMessage(1, w.Bytes())
 		}
 		time.Sleep(time.Millisecond * time.Duration(interval))
 	}
 }
 
 func doWork(boardData *board.Board) {
-	for !boardData.Iter() {
+	for boardData.Iter() {
 		time.Sleep(time.Millisecond * 10)
 	}
 }
