@@ -4,6 +4,7 @@ import (
 	"math/rand"
 
 	"github.com/ReidMason/wave-function-collapse/internal/cell"
+	"github.com/ReidMason/wave-function-collapse/internal/socket"
 	"github.com/ReidMason/wave-function-collapse/internal/tile"
 )
 
@@ -14,6 +15,7 @@ type Board struct {
 }
 
 func New(size int, r *rand.Rand) *Board {
+	socket.ConvertSocketConstraints()
 	allTiles := tile.GetAllTiles()
 	cells := make([][]*cell.Cell, 0, size)
 	for i := 0; i < size; i++ {
