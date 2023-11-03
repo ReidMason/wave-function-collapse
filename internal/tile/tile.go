@@ -63,7 +63,7 @@ func GetAllTiles() []Tile {
 			socket.SandT,
 			socket.WaterSandW,
 		},
-		Style: "bg-gradient-to-t from-orange-200 to-blue-400",
+		Style: "bg-gradient-to-t from-orange-200 from-30% to-70% to-blue-400",
 	}
 
 	waterSandCorner := Tile{
@@ -73,7 +73,7 @@ func GetAllTiles() []Tile {
 			socket.SandT,
 			socket.WaterSandCornerW,
 		},
-		Style: "bg-gradient-to-tl from-orange-200 from-50% to-blue-400",
+		Style: "bg-gradient-to-tl from-orange-200 from-60% to-90% to-blue-400",
 	}
 
 	sandWaterCorner := Tile{
@@ -83,7 +83,7 @@ func GetAllTiles() []Tile {
 			socket.WaterT,
 			socket.SandWaterCornerW,
 		},
-		Style: "bg-gradient-to-tl from-blue-400 from-50% to-orange-200",
+		Style: "bg-gradient-to-tl from-blue-400 from-60% to-90% to-orange-200",
 	}
 
 	sandGrass := Tile{
@@ -93,7 +93,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.SandGrassW,
 		},
-		Style: "bg-gradient-to-t from-green-200 to-orange-200",
+		Style: "bg-gradient-to-t from-green-200 from-30% to-70% to-orange-200",
 	}
 
 	sandGrassCorner := Tile{
@@ -103,7 +103,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.SandGrassCornerW,
 		},
-		Style: "bg-gradient-to-tl from-green-200 from-50% to-orange-200",
+		Style: "bg-gradient-to-tl from-green-200 from-60% to-90% to-orange-200",
 	}
 
 	grassSandCorner := Tile{
@@ -113,7 +113,7 @@ func GetAllTiles() []Tile {
 			socket.SandT,
 			socket.GrassSandCornerW,
 		},
-		Style: "bg-gradient-to-tl from-orange-200 from-50% to-green-200",
+		Style: "bg-gradient-to-tl from-orange-200 from-60% to-90% to-green-200",
 	}
 
 	forestGrass := Tile{
@@ -123,7 +123,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.ForestGrassW,
 		},
-		Style: "bg-gradient-to-t from-green-200 to-green-400",
+		Style: "bg-gradient-to-t from-green-200 from-30% to-70% to-green-400",
 	}
 
 	forestGrassCorner := Tile{
@@ -133,7 +133,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.ForestGrassCornerW,
 		},
-		Style: "bg-gradient-to-tl from-green-200 from-50% to-green-400",
+		Style: "bg-gradient-to-tl from-green-200 from-60% to-90% to-green-400",
 	}
 
 	grassForestCorner := Tile{
@@ -143,7 +143,7 @@ func GetAllTiles() []Tile {
 			socket.ForestT,
 			socket.GrassForestCornerW,
 		},
-		Style: "bg-gradient-to-tl from-green-400 from-50% to-green-200",
+		Style: "bg-gradient-to-tl from-green-400 from-60% to-90% to-green-200",
 	}
 
 	tiles := []Tile{grass, forest, sand, water}
