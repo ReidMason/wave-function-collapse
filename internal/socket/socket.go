@@ -63,15 +63,44 @@ var SocketConstraints = map[Socket]map[Socket]bool{
 var SocketConstraintsArr [][]bool
 
 func ConvertSocketConstraints() [][]bool {
-	total := 26
+	sockets := []Socket{
+		Grass,
+		Forest,
+		Water,
+		Sand,
+		WaterT,
+		SandT,
+		GrassT,
+		ForestT,
+		WaterSandW,
+		WaterSandE,
+		WaterSandCornerN,
+		WaterSandCornerW,
+		SandWaterCornerN,
+		SandWaterCornerW,
+		SandGrassW,
+		SandGrassE,
+		SandGrassCornerN,
+		SandGrassCornerW,
+		GrassSandCornerN,
+		GrassSandCornerW,
+		ForestGrassW,
+		ForestGrassE,
+		ForestGrassCornerN,
+		ForestGrassCornerW,
+		GrassForestCornerN,
+		GrassForestCornerW,
+	}
+
+	total := len(sockets)
 	newConstraints := make([][]bool, total)
 
-	for socket, hashmap := range SocketConstraints {
+	for _, s := range sockets {
 		constraints := make([]bool, total)
-		for x, y := range hashmap {
-			constraints[x] = y
+		for _, cs := range sockets {
+			constraints[cs] = canConnectHashmap(s, cs)
 		}
-		newConstraints[socket] = constraints
+		newConstraints[s] = constraints
 	}
 
 	SocketConstraintsArr = newConstraints
@@ -87,18 +116,10 @@ func CanConnect(socket1, socket2 Socket) bool {
 		}
 	}
 
-	compatibleSockets = SocketConstraintsArr[socket2]
-	if len(compatibleSockets) > 0 {
-		foundSocket := compatibleSockets[socket1]
-		if foundSocket {
-			return true
-		}
-	}
-
 	return false
 }
 
-func CanConnectOld(socket1, socket2 Socket) bool {
+func canConnectHashmap(socket1, socket2 Socket) bool {
 	compatibleSockets, found := SocketConstraints[socket1]
 	if found {
 		_, found = compatibleSockets[socket2]

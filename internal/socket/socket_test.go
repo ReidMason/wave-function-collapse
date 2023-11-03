@@ -25,12 +25,6 @@ func TestCanConnect(t *testing.T) {
 	}
 }
 
-func BenchmarkAccessConstraintsMap(b *testing.B) {
-	for i := 0; i < iters; i++ {
-		CanConnectOld(Water, Sand)
-	}
-}
-
 func BenchmarkAccessConstraintsArray(b *testing.B) {
 	ConvertSocketConstraints()
 	b.ResetTimer()
