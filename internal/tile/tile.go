@@ -1,6 +1,7 @@
 package tile
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/ReidMason/wave-function-collapse/internal/socket"
@@ -16,6 +17,9 @@ var Blank = Tile{
 }
 
 func GetAllTiles() []Tile {
+	var cardinalTransition = "from-30% to-70%"
+	var diagonalTransition = "from-60% to-90%"
+
 	grass := Tile{
 		Sockets: [4]socket.Socket{
 			socket.Grass,
@@ -63,7 +67,7 @@ func GetAllTiles() []Tile {
 			socket.SandT,
 			socket.WaterSandW,
 		},
-		Style: "bg-gradient-to-t from-orange-200 from-30% to-70% to-blue-400",
+		Style: fmt.Sprintf("bg-gradient-to-t from-orange-200 to-blue-400 %s", cardinalTransition),
 	}
 
 	waterSandCorner := Tile{
@@ -73,7 +77,7 @@ func GetAllTiles() []Tile {
 			socket.SandT,
 			socket.WaterSandCornerW,
 		},
-		Style: "bg-gradient-to-tl from-orange-200 from-60% to-90% to-blue-400",
+		Style: fmt.Sprintf("bg-gradient-to-tl from-orange-200 to-blue-400 %s", diagonalTransition),
 	}
 
 	sandWaterCorner := Tile{
@@ -83,7 +87,7 @@ func GetAllTiles() []Tile {
 			socket.WaterT,
 			socket.SandWaterCornerW,
 		},
-		Style: "bg-gradient-to-tl from-blue-400 from-60% to-90% to-orange-200",
+		Style: fmt.Sprintf("bg-gradient-to-tl from-blue-400 to-orange-200 %s", diagonalTransition),
 	}
 
 	sandGrass := Tile{
@@ -93,7 +97,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.SandGrassW,
 		},
-		Style: "bg-gradient-to-t from-green-200 from-30% to-70% to-orange-200",
+		Style: fmt.Sprintf("bg-gradient-to-t from-green-200 to-orange-200 %s", cardinalTransition),
 	}
 
 	sandGrassCorner := Tile{
@@ -103,7 +107,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.SandGrassCornerW,
 		},
-		Style: "bg-gradient-to-tl from-green-200 from-60% to-90% to-orange-200",
+		Style: fmt.Sprintf("bg-gradient-to-tl from-green-200 to-orange-200 %s", diagonalTransition),
 	}
 
 	grassSandCorner := Tile{
@@ -113,7 +117,7 @@ func GetAllTiles() []Tile {
 			socket.SandT,
 			socket.GrassSandCornerW,
 		},
-		Style: "bg-gradient-to-tl from-orange-200 from-60% to-90% to-green-200",
+		Style: fmt.Sprintf("bg-gradient-to-tl from-orange-200 to-green-200 %s", diagonalTransition),
 	}
 
 	forestGrass := Tile{
@@ -123,7 +127,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.ForestGrassW,
 		},
-		Style: "bg-gradient-to-t from-green-200 from-30% to-70% to-green-400",
+		Style: fmt.Sprintf("bg-gradient-to-t from-green-200 to-green-400 %s", cardinalTransition),
 	}
 
 	forestGrassCorner := Tile{
@@ -133,7 +137,7 @@ func GetAllTiles() []Tile {
 			socket.GrassT,
 			socket.ForestGrassCornerW,
 		},
-		Style: "bg-gradient-to-tl from-green-200 from-60% to-90% to-green-400",
+		Style: fmt.Sprintf("bg-gradient-to-tl from-green-200 to-green-400 %s", diagonalTransition),
 	}
 
 	grassForestCorner := Tile{
@@ -143,7 +147,7 @@ func GetAllTiles() []Tile {
 			socket.ForestT,
 			socket.GrassForestCornerW,
 		},
-		Style: "bg-gradient-to-tl from-green-400 from-60% to-90% to-green-200",
+		Style: fmt.Sprintf("bg-gradient-to-tl from-green-400 to-green-200 %s", diagonalTransition),
 	}
 
 	tiles := []Tile{grass, forest, sand, water}
