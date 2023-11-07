@@ -40,10 +40,6 @@ func (c *Cell) setPossibilities(possibilities []tile.Tile) {
 func (c Cell) Entropy() int    { return c.entropy }
 func (c Cell) Collapsed() bool { return c.collapsed }
 
-// func (c Cell) getNeighbourPossibilities() {
-//
-// }
-
 func (c *Cell) Collapse() {
 	idx := c.r.Intn(len(c.possibilities))
 	c.Tile = c.possibilities[idx]
@@ -89,42 +85,6 @@ func (c *Cell) constrain(neighbour *Cell, dir1, dir2 int) {
 	}
 }
 
-//	func (t *Tile) constrain(neighbour *Tile, direction Direction) {
-//		if t == nil || neighbour == nil || t.entropy <= 0 {
-//			return
-//		}
-//
-//		neighbourPossibilities := neighbour.possibilities
-//		if len(neighbourPossibilities) == 0 {
-//			return
-//		}
-//
-//		ourPossibilities := t.neighbourPossibilities[direction]
-//
-//		constrained := false
-//		for _, neighbourPossibility := range neighbourPossibilities {
-//			contains := false
-//			for _, possibility := range ourPossibilities {
-//				if neighbourPossibility == possibility {
-//					contains = true
-//					break
-//				}
-//			}
-//
-//			if !contains {
-//				constrained = true
-//				neighbour.possibilities = neighbour.filterPossibilties(neighbourPossibility)
-//				neighbour.entropy = len(neighbour.possibilities)
-//			}
-//		}
-//
-//		if constrained {
-//			neighbour.constrain(neighbour.north, North)
-//			neighbour.constrain(neighbour.east, East)
-//			neighbour.constrain(neighbour.south, South)
-//			neighbour.constrain(neighbour.west, West)
-//		}
-//	}
 func (c *Cell) filterPossibilties(targetTile tile.Tile) {
 	newPossibilities := make([]tile.Tile, 0)
 	for _, val := range c.possibilities {
