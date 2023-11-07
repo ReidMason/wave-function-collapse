@@ -53,7 +53,7 @@ func (c *Cell) Collapse() {
 }
 
 func (c *Cell) constrain(neighbour *Cell, dir1, dir2 int) {
-	if c == nil || neighbour == nil || c.Collapsed() {
+	if c == nil || c.Collapsed() || neighbour == nil {
 		return
 	}
 
@@ -86,7 +86,7 @@ func (c *Cell) constrain(neighbour *Cell, dir1, dir2 int) {
 }
 
 func (c *Cell) filterPossibilties(targetTile tile.Tile) {
-	newPossibilities := make([]tile.Tile, 0)
+	newPossibilities := make([]tile.Tile, 0, len(c.possibilities))
 	for _, val := range c.possibilities {
 		if val != targetTile {
 			newPossibilities = append(newPossibilities, val)
