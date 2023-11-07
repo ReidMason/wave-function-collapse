@@ -13,13 +13,13 @@ type Cell struct {
 	East          *Cell
 	West          *Cell
 	r             *rand.Rand
-	possibilities []tile.Tile
+	possibilities []*tile.Tile
 	Tile          tile.Tile
 	entropy       int
 	collapsed     bool
 }
 
-func New(r *rand.Rand, possibilities []tile.Tile) *Cell {
+func New(r *rand.Rand, possibilities []*tile.Tile) *Cell {
 
 	cell := Cell{
 		Tile:      tile.Blank,
@@ -32,7 +32,7 @@ func New(r *rand.Rand, possibilities []tile.Tile) *Cell {
 	return &cell
 }
 
-func (c *Cell) setPossibilities(possibilities []tile.Tile) {
+func (c *Cell) setPossibilities(possibilities []*tile.Tile) {
 	c.possibilities = possibilities
 	c.entropy = len(c.possibilities)
 }
@@ -41,10 +41,11 @@ func (c Cell) Entropy() int    { return c.entropy }
 func (c Cell) Collapsed() bool { return c.collapsed }
 
 func (c *Cell) Collapse() {
+	// idx := c.r.Intn(c.entropy)
 	idx := c.r.Intn(len(c.possibilities))
-	c.Tile = c.possibilities[idx]
+	c.Tile = *c.possibilities[idx]
 
-	c.setPossibilities([]tile.Tile{c.Tile})
+	c.setPossibilities([]*tile.Tile{&c.Tile})
 	c.collapsed = true
 	c.North.constrain(c, 0, 2)
 	c.South.constrain(c, 2, 0)
@@ -71,6 +72,7 @@ func (c *Cell) constrain(neighbour *Cell, dir1, dir2 int) {
 				break
 			}
 		}
+
 		if !canConnect {
 			c.filterPossibilties(possiblity)
 			constrained = true
@@ -85,8 +87,8 @@ func (c *Cell) constrain(neighbour *Cell, dir1, dir2 int) {
 	}
 }
 
-func (c *Cell) filterPossibilties(targetTile tile.Tile) {
-	newPossibilities := make([]tile.Tile, 0, len(c.possibilities))
+func (c *Cell) filterPossibilties(targetTile *tile.Tile) {
+	newPossibilities := make([]*tile.Tile, 0, len(c.possibilities))
 	for _, val := range c.possibilities {
 		if val != targetTile {
 			newPossibilities = append(newPossibilities, val)

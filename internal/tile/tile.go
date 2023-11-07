@@ -16,7 +16,7 @@ var Blank = Tile{
 	Style: "bg-slate-500",
 }
 
-func GetAllTiles() []Tile {
+func GetAllTiles() []*Tile {
 	var cardinalTransition = "from-30% to-70%"
 	var diagonalTransition = "from-60% to-90%"
 
@@ -150,7 +150,7 @@ func GetAllTiles() []Tile {
 		Style: fmt.Sprintf("bg-gradient-to-tl from-green-400 to-green-200 %s", diagonalTransition),
 	}
 
-	tiles := []Tile{grass, forest, sand, water}
+	tiles := []*Tile{&grass, &forest, &sand, &water}
 
 	rotatableTiles := []Tile{waterSand, waterSandCorner, sandWaterCorner, sandGrass, sandGrassCorner, grassSandCorner, forestGrass, forestGrassCorner, grassForestCorner}
 	for _, tile := range rotatableTiles {
@@ -162,7 +162,7 @@ func GetAllTiles() []Tile {
 	return tiles
 }
 
-func rotate(tile Tile, rotations int) Tile {
+func rotate(tile Tile, rotations int) *Tile {
 	totalSockets := len(tile.Sockets)
 	newSockets := [4]socket.Socket{}
 	for i := 0; i < totalSockets; i++ {
@@ -170,7 +170,7 @@ func rotate(tile Tile, rotations int) Tile {
 	}
 	tile.Sockets = newSockets
 	tile.Style = getRotateClass(rotations, tile.Style)
-	return tile
+	return &tile
 }
 
 func getRotateClass(rotations int, style string) string {
