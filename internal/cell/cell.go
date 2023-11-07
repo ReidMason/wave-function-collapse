@@ -63,19 +63,23 @@ func (c *Cell) constrain(neighbour *Cell, dir1, dir2 int) {
 	}
 
 	constrained := false
+	newPossibilities := make([]tile.Tile, 0)
 	for _, possiblity := range c.possibilities {
-		match := false
+		canConnect := false
 		for _, neighbourPossibility := range neighbourPossibilities {
 			if socket.CanConnect(possiblity.Sockets[dir2], neighbourPossibility.Sockets[dir1]) {
-				match = true
+				canConnect = true
+				newPossibilities = append(newPossibilities, possiblity)
 				break
 			}
 		}
-		if !match {
-			c.filterPossibilties(possiblity)
+
+		if !canConnect {
 			constrained = true
 		}
 	}
+
+	c.setPossibilities(newPossibilities)
 
 	if constrained {
 		c.North.constrain(c, 0, 2)
@@ -83,14 +87,4 @@ func (c *Cell) constrain(neighbour *Cell, dir1, dir2 int) {
 		c.East.constrain(c, 1, 3)
 		c.West.constrain(c, 3, 1)
 	}
-}
-
-func (c *Cell) filterPossibilties(targetTile tile.Tile) {
-	newPossibilities := make([]tile.Tile, 0)
-	for _, val := range c.possibilities {
-		if val != targetTile {
-			newPossibilities = append(newPossibilities, val)
-		}
-	}
-	c.setPossibilities(newPossibilities)
 }
